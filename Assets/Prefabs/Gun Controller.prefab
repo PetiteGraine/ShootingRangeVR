@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 752686323466385708}
   - component: {fileID: 4195085989144324520}
   m_Layer: 0
-  m_Name: Gun_Controller
+  m_Name: Gun Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

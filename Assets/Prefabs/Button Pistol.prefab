@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3492563755090271234}
   - component: {fileID: 2967136077790215041}
   m_Layer: 5
-  m_Name: Button  Pistol
+  m_Name: Button Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
