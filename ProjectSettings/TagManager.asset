@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 3
   tags:
   - Bullet
+  - GunController
+  - FirePoint
+  - GunVisual
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Invisible Walls
   - Water
   - UI
   - 
