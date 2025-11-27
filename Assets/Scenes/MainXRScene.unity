@@ -5161,7 +5161,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5832348533226921976, guid: f664cd5bbecdca14287faea743153003, type: 3}
       propertyPath: m_Name
-      value: Spawner
+      value: Target Spawner
       objectReference: {fileID: 0}
     - target: {fileID: 8887640246851748823, guid: f664cd5bbecdca14287faea743153003, type: 3}
       propertyPath: m_LocalPosition.x

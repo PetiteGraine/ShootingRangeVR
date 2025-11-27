@@ -6,12 +6,23 @@ public class DestroyTarget : MonoBehaviour
     [SerializeField] private GameObject _spawner;
     [SerializeField] private GameObject _hitEffect;
 
+    private void Start()
+    {
+        ChangeRandomPosition();
+    }
+
     public void DestroyGameObject()
     {
-        GameObject parent = transform.parent.gameObject;
         _hitEffect.SetActive(true);
         this.gameObject.SetActive(false);
-        _spawner.GetComponent<Spawner>().SpawnTarget(true);
-        Destroy(parent, _delayTime);
+        Invoke(nameof(ChangeRandomPosition), _delayTime);
+    }
+
+    private void ChangeRandomPosition()
+    {
+        this.gameObject.SetActive(true);
+        _hitEffect.SetActive(false);
+        Vector3 newPosition = _spawner.GetComponent<Spawner>().RandomPosition();
+        this.transform.parent.position = newPosition;
     }
 }
