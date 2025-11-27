@@ -10,6 +10,7 @@ public class DestroyTarget : MonoBehaviour
     {
         GameObject parent = transform.parent.gameObject;
         _hitEffect.SetActive(true);
+        _hitEffect.GetComponent<FractureEffect>().BreakObject();
         this.gameObject.SetActive(false);
         _spawner.GetComponent<Spawner>().SpawnTarget(true);
         Destroy(parent, _delayTime);
