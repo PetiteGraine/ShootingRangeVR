@@ -1,9 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class Gun : MonoBehaviour
 {
     [SerializeField] private GameObject _defaultGun;
+    [SerializeField] private GameObject _bullets_container;
+    private List<GameObject> _pool = new List<GameObject>();
     [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform _firePoint;
     [SerializeField] private float _fireSpeed = 20f;
@@ -23,26 +26,46 @@ public class Gun : MonoBehaviour
                 }
             }
         }
+
+        foreach (Transform t in _bullets_container.GetComponentsInChildren<Transform>(true))
+        {
+            _pool.Add(t.gameObject);
+        }
     }
 
     public void FireBullet(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
-            SpawnAndFireBullet();
+            BulletPoolingAndFire();
         }
     }
 
-    private void SpawnAndFireBullet()
+    private void BulletPoolingAndFire()
     {
-        GameObject spawnedBullet = Instantiate(_bullet);
+        GameObject spawnedBullet = null;
+
+        foreach (var bullet in _pool)
+        {
+            if (!bullet.activeInHierarchy)
+            {
+                spawnedBullet = bullet;
+                spawnedBullet.SetActive(true);
+                break;
+            }
+        }
+
+        if (spawnedBullet == null)
+        {
+            spawnedBullet = Instantiate(_bullet, _bullets_container.transform);
+            _pool.Add(spawnedBullet);
+        }
+
         spawnedBullet.transform.position = _firePoint.position;
         spawnedBullet.transform.rotation = _firePoint.rotation;
 
-        spawnedBullet.GetComponent<Rigidbody>().linearVelocity =
-            _firePoint.forward * _fireSpeed;
-
-        Destroy(spawnedBullet, 5f);
+        var rb = spawnedBullet.GetComponent<Rigidbody>();
+        rb.linearVelocity = _firePoint.forward * _fireSpeed;
     }
 
     public void ChangeGun(GameObject newGunPrefab)
