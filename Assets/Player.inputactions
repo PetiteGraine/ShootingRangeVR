@@ -47,17 +47,6 @@
                     "action": "Fire [RightHand]",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fab27ffc-32d1-435a-8234-593030dd479d",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Fire [RightHand]",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }
