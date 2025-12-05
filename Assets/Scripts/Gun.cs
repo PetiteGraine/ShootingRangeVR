@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     private List<GameObject> _pool = new List<GameObject>();
     [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform _firePoint;
+    private ParticleSystem _muzzleFlash;
     [SerializeField] private float _fireSpeed = 20f;
 
     private void Awake()
@@ -22,6 +23,7 @@ public class Gun : MonoBehaviour
                 if (t.CompareTag("FirePoint"))
                 {
                     _firePoint = t;
+                    _muzzleFlash = t.GetComponentInChildren<ParticleSystem>();
                     break;
                 }
             }
@@ -38,6 +40,7 @@ public class Gun : MonoBehaviour
         if (context.performed)
         {
             BulletPoolingAndFire();
+            MuzzleFlash();
         }
     }
 
@@ -68,6 +71,14 @@ public class Gun : MonoBehaviour
         rb.linearVelocity = _firePoint.forward * _fireSpeed;
     }
 
+    private void MuzzleFlash()
+    {
+        if (_muzzleFlash != null)
+        {
+            _muzzleFlash.Play();
+        }
+    }
+
     public void ChangeGun(GameObject newGunPrefab)
     {
         if (newGunPrefab == null) return;
@@ -85,6 +96,7 @@ public class Gun : MonoBehaviour
             if (t.CompareTag("FirePoint"))
             {
                 _firePoint = t;
+                _muzzleFlash = t.GetComponentInChildren<ParticleSystem>();
                 break;
             }
         }

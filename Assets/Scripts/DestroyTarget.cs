@@ -14,6 +14,7 @@ public class DestroyTarget : MonoBehaviour
     public void DestroyGameObject()
     {
         _hitEffect.SetActive(true);
+        _hitEffect.GetComponent<FractureEffect>().BreakObject();
         this.gameObject.SetActive(false);
         Invoke(nameof(ChangeRandomPosition), _delayTime);
     }
