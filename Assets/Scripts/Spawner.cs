@@ -44,7 +44,7 @@ public class Spawner : MonoBehaviour
 
     public void SpawnTarget()
     {
-        Instantiate(_targetPrefab, new Vector3(0, 0, 0), Quaternion.Euler(0, -90, 0), this.transform);
+        Instantiate(_targetPrefab, RandomPosition(), Quaternion.Euler(0, -90, 0), this.transform);
     }
 
     public Vector3 RandomPosition()
