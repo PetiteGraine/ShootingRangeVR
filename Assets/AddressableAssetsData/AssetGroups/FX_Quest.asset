@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: FX_Quest
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: FX_Quest
+  m_GUID: d05ae0ba78ca20640804384110a89f3e
+  m_SerializeEntries:
+  - m_GUID: 14a3bad4c7efe024a827ab3c377e417a
+    m_Address: Audios/shot-3_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - quest
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a41d64166800ef4b96db4e1e18d5d4d
+    m_Address: Audios/shot-2_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - quest
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9c409b30ede31ac448b3bf98c1913296
+    m_Address: Bullets/Bullet_Pistol_A_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - quest
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a8b9e0226d6376441a25f3dc26eacbfd
+    m_Address: Guns/FirePoint_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - quest
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c9e44ac183eee5b4eadc80b926b6563e
+    m_Address: Audios/hit-impact_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - quest
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: debed3f8d14c1174bb6415e6294a925e
+    m_Address: Audios/shot-1_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - quest
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4ddaa694d32aea4ba317619bf88217a
+    m_Address: Prefabs/Gun_Stand_Quest
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - quest
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 43534607c7953f44cad1686619fbad82, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: ced1b37330e43a24ea6a34dadfcfce07, type: 2}
+    - {fileID: 11400000, guid: 9ea37ee7e06a9e34db4c59aca13d5c72, type: 2}

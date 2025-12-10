@@ -4,9 +4,10 @@ public class ChangeGuns : MonoBehaviour
 {
     public void ReplaceGun(GameObject gunPrefab)
     {
-        GameObject[] GunsController = GameObject.FindGameObjectsWithTag("GunController");
-        if (GunsController == null || GunsController.Length == 0 || gunPrefab == null) return;
-        GunsController[0].GetComponentInChildren<Gun>()?.ChangeGun(gunPrefab);
-        GunsController[1].GetComponentInChildren<Gun>()?.ChangeGun(gunPrefab);
+        GameObject GameController = GameObject.FindGameObjectWithTag("GameController");
+        Gun[] guns = GameController.GetComponentsInChildren<Gun>();
+        if (GameController == null || guns.Length == 0 || gunPrefab == null) return;
+        guns[0]?.ChangeGun(gunPrefab);
+        guns[1]?.ChangeGun(gunPrefab);
     }
 }

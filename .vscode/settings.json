@@ -67,5 +67,5 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "xr_project.slnx"
+    "dotnet.defaultSolution": "shooting-range-vr-unity-6.slnx"
 }
