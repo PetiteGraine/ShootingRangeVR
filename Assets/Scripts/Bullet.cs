@@ -25,10 +25,11 @@ public class Bullet : MonoBehaviour
         {
             collision.gameObject.GetComponent<DestroyTarget>().DestroyGameObject();
             this.gameObject.SetActive(false);
+            GameplayManager.Instance.AddScore(1);
             return;
         }
 
-        Rigidbody rb = GetComponent<Rigidbody>();
+        Rigidbody rb = this.gameObject.GetComponent<Rigidbody>();
         rb.useGravity = true;
     }
 }

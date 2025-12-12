@@ -745,7 +745,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1902168994472557611, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_Name
-      value: Button Pistol_H (8)
+      value: Button Pistol_H (6)
       objectReference: {fileID: 0}
     - target: {fileID: 2967136077790215041, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -879,7 +879,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1902168994472557611, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_Name
-      value: Button Pistol_J (10)
+      value: Button Pistol_J (8)
       objectReference: {fileID: 0}
     - target: {fileID: 2967136077790215041, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1013,7 +1013,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1902168994472557611, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_Name
-      value: Button Pistol_D (4)
+      value: Button Pistol_E (4)
       objectReference: {fileID: 0}
     - target: {fileID: 2967136077790215041, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1042,7 +1042,7 @@ PrefabInstance:
     - target: {fileID: 2967136077790215041, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 4920507860935382577, guid: 5f04650d3064895489cdb8f95e907c1b, type: 3}
+      objectReference: {fileID: 2804036681021304787, guid: 8147cbc638990a74995cb3f8161c7edd, type: 3}
     - target: {fileID: 2967136077790215041, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
@@ -1385,7 +1385,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1902168994472557611, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_Name
-      value: Button Pistol_I (9)
+      value: Button Pistol_I (7)
       objectReference: {fileID: 0}
     - target: {fileID: 2967136077790215041, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2021,7 +2021,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1902168994472557611, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_Name
-      value: Button Pistol_G (7)
+      value: Button Pistol_F (5)
       objectReference: {fileID: 0}
     - target: {fileID: 2967136077790215041, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2050,7 +2050,7 @@ PrefabInstance:
     - target: {fileID: 2967136077790215041, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 6971496768782505918, guid: dfc4d87131163204eb41e8626f81e196, type: 3}
+      objectReference: {fileID: 5789703485367661094, guid: 9c5ac491f264de345bd534069d892997, type: 3}
     - target: {fileID: 2967136077790215041, guid: a70d9039ff08e5447b710f99a4a10815, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine

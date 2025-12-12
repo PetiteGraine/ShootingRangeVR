@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
@@ -5,6 +6,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject _targetPrefab;
     [SerializeField] private int _numberOfTargets = 0;
     [SerializeField] private GameObject _spawnerArea;
+    private List<GameObject> _spawnedTargets = new List<GameObject>();
     private static Vector3 _maxSpawnPosition;
     private static Vector3 _minSpawnPosition;
     private static Spawner _instance;
@@ -24,14 +26,6 @@ public class Spawner : MonoBehaviour
         InitSpawnArea();
     }
 
-    private void Start()
-    {
-        for (int i = 0; i < _numberOfTargets; i++)
-        {
-            SpawnTarget();
-        }
-    }
-
     private void InitSpawnArea()
     {
         _maxSpawnPosition = new Vector3(_spawnerArea.transform.position.x + _spawnerArea.transform.localScale.x / 2,
@@ -42,9 +36,26 @@ public class Spawner : MonoBehaviour
                                      _spawnerArea.transform.position.z - _spawnerArea.transform.localScale.z / 2);
     }
 
-    public void SpawnTarget()
+    public void StartNewGame()
     {
-        Instantiate(_targetPrefab, RandomPosition(), Quaternion.Euler(0, -90, 0), this.transform);
+        if (_spawnedTargets.Count > 0)
+            EnableAllTargetsAndReposition();
+        else
+            SpawnTargets();
+    }
+
+    private void SpawnTargets()
+    {
+        for (int i = 0; i < _numberOfTargets; i++)
+        {
+            SpawnTarget();
+        }
+    }
+
+    private void SpawnTarget()
+    {
+        GameObject spawnedTarget = Instantiate(_targetPrefab, RandomPosition(), Quaternion.Euler(0, -90, 0), this.transform);
+        _spawnedTargets.Add(spawnedTarget);
     }
 
     public Vector3 RandomPosition()
@@ -52,5 +63,22 @@ public class Spawner : MonoBehaviour
         return new Vector3(Random.Range(_minSpawnPosition.x, _maxSpawnPosition.x),
                            Random.Range(_minSpawnPosition.y, _maxSpawnPosition.y),
                            Random.Range(_minSpawnPosition.z, _maxSpawnPosition.z));
+    }
+
+    public void DisableAllTargets()
+    {
+        foreach (GameObject target in _spawnedTargets)
+        {
+            target.SetActive(false);
+        }
+    }
+
+    public void EnableAllTargetsAndReposition()
+    {
+        foreach (GameObject target in _spawnedTargets)
+        {
+            target.transform.parent.position = RandomPosition();
+            target.SetActive(true);
+        }
     }
 }
