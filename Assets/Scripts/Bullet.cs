@@ -1,21 +1,35 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private float _lifeTime = 5f;
+    [Header("Bullet Settings")]
+    [SerializeField] private float _lifeTime = 5f;
+    private Rigidbody _rigidbody;
+    private TrailRenderer _particleSystem;
+    private Coroutine _disableCoroutine;
+
+    private void Awake()
+    {
+        _rigidbody = GetComponent<Rigidbody>();
+        _particleSystem = GetComponent<TrailRenderer>();
+    }
 
     private void OnEnable()
     {
-        Invoke(nameof(Disable), _lifeTime);
+        _disableCoroutine = StartCoroutine(DisableAfterDelay());
+        _particleSystem.enabled = true;
     }
 
     private void OnDisable()
     {
-        CancelInvoke();
+        if (_disableCoroutine != null)
+            StopCoroutine(_disableCoroutine);
     }
 
-    private void Disable()
+    private IEnumerator DisableAfterDelay()
     {
+        yield return new WaitForSeconds(_lifeTime);
         gameObject.SetActive(false);
     }
 
@@ -25,10 +39,11 @@ public class Bullet : MonoBehaviour
         {
             collision.gameObject.GetComponent<DestroyTarget>().DestroyGameObject();
             this.gameObject.SetActive(false);
+            GameplayManager.Instance.AddScore(1);
             return;
         }
 
-        Rigidbody rb = GetComponent<Rigidbody>();
-        rb.useGravity = true;
+        _rigidbody.useGravity = true;
+        _particleSystem.enabled = false;
     }
 }

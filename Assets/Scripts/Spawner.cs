@@ -1,50 +1,99 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    [Header("Target Setup")]
     [SerializeField] private GameObject _targetPrefab;
-    [SerializeField] private int _numberOfTargets = 0;
     [SerializeField] private GameObject _spawnerArea;
-    private static Vector3 _maxSpawnPosition;
-    private static Vector3 _minSpawnPosition;
-    private static Spawner _instance;
-    public static Spawner Instance { get { return _instance; } }
+    [SerializeField] private float _spawnInterval = 1.0f;
 
+    private List<GameObject> _spawnedTargets = new List<GameObject>();
+    private Vector3 _maxSpawnPosition;
+    private Vector3 _minSpawnPosition;
+    private Coroutine _spawnLoop;
+
+    public static Spawner Instance { get; private set; }
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(this.gameObject);
         }
         else
         {
-            _instance = this;
-        }
-        InitSpawnArea();
-    }
-
-    private void Start()
-    {
-        for (int i = 0; i < _numberOfTargets; i++)
-        {
-            SpawnTarget();
+            Instance = this;
+            InitSpawnArea();
         }
     }
 
     private void InitSpawnArea()
     {
-        _maxSpawnPosition = new Vector3(_spawnerArea.transform.position.x + _spawnerArea.transform.localScale.x / 2,
-                                     _spawnerArea.transform.position.y + _spawnerArea.transform.localScale.y / 2,
-                                     _spawnerArea.transform.position.z + _spawnerArea.transform.localScale.z / 2);
-        _minSpawnPosition = new Vector3(_spawnerArea.transform.position.x - _spawnerArea.transform.localScale.x / 2,
-                                     _spawnerArea.transform.position.y - _spawnerArea.transform.localScale.y / 2,
-                                     _spawnerArea.transform.position.z - _spawnerArea.transform.localScale.z / 2);
+        if (_spawnerArea == null)
+        {
+            Debug.LogError("SpawnerArea is not assigned in Spawner.");
+            return;
+        }
+
+        _maxSpawnPosition = _spawnerArea.transform.position + _spawnerArea.transform.localScale / 2f;
+        _minSpawnPosition = _spawnerArea.transform.position - _spawnerArea.transform.localScale / 2f;
     }
 
-    public void SpawnTarget()
+    public void StartNewGame()
     {
-        Instantiate(_targetPrefab, RandomPosition(), Quaternion.Euler(0, -90, 0), this.transform);
+        if (_spawnLoop != null)
+        {
+            StopCoroutine(_spawnLoop);
+        }
+
+        if (_spawnedTargets.Count > 0)
+        {
+            EnableAllTargetsAndReposition();
+        }
+
+        _spawnLoop = StartCoroutine(SpawnLoop());
+    }
+
+    private IEnumerator SpawnLoop()
+    {
+        yield return new WaitWhile(() => GameplayManager.Instance == null);
+
+        while (true)
+        {
+            if (GameplayManager.Instance.CurrentTargets < GameplayManager.Instance.MaxTargets)
+            {
+                SpawnTarget();
+            }
+            yield return new WaitForSeconds(_spawnInterval);
+        }
+    }
+
+    private void SpawnTarget()
+    {
+        GameObject targetToSpawn = null;
+
+        foreach (var target in _spawnedTargets)
+        {
+            if (!target.activeInHierarchy)
+            {
+                targetToSpawn = target;
+                break;
+            }
+        }
+
+        if (targetToSpawn == null)
+        {
+            targetToSpawn = Instantiate(_targetPrefab, this.transform);
+            _spawnedTargets.Add(targetToSpawn);
+        }
+
+        targetToSpawn.transform.position = RandomPosition();
+        targetToSpawn.transform.rotation = Quaternion.Euler(0, -90, 0);
+        targetToSpawn.SetActive(true);
+
+        GameplayManager.Instance.RegisterTargetSpawn();
     }
 
     public Vector3 RandomPosition()
@@ -52,5 +101,33 @@ public class Spawner : MonoBehaviour
         return new Vector3(Random.Range(_minSpawnPosition.x, _maxSpawnPosition.x),
                            Random.Range(_minSpawnPosition.y, _maxSpawnPosition.y),
                            Random.Range(_minSpawnPosition.z, _maxSpawnPosition.z));
+    }
+
+    public void DisableAllTargets()
+    {
+        if (_spawnLoop != null)
+        {
+            StopCoroutine(_spawnLoop);
+        }
+
+        foreach (GameObject target in _spawnedTargets)
+        {
+            if (target.activeInHierarchy)
+            {
+                target.SetActive(false);
+                GameplayManager.Instance.RegisterTargetDespawn();
+            }
+        }
+    }
+
+    public void EnableAllTargetsAndReposition()
+    {
+        foreach (GameObject target in _spawnedTargets)
+        {
+            target.transform.position = RandomPosition();
+            target.SetActive(true);
+
+            GameplayManager.Instance.RegisterTargetSpawn();
+        }
     }
 }

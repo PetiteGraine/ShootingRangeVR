@@ -5,8 +5,10 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class BulletSound : MonoBehaviour
 {
-    private AudioClip[] _bulletSounds;
+    [Header("Bullet Sounds Settings")]
     [SerializeField] private int _numberOfSounds = 3;
+
+    private AudioClip[] _bulletSounds;
 
     private IEnumerator Start()
     {

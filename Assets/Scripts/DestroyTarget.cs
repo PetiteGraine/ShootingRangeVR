@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class DestroyTarget : MonoBehaviour
 {
-    [SerializeField] private float _delayTime = 0.25f;
+    [Header("Destroy Target Settings")]
+    [SerializeField] private float _delayTime = 0.20f;
     [SerializeField] private GameObject _spawner;
     [SerializeField] private GameObject _hitEffect;
+
     private AudioClip _audioClip;
     private TargetSoundManager _targetSoundManager;
 
@@ -22,7 +24,6 @@ public class DestroyTarget : MonoBehaviour
             _audioClip = _targetSoundManager.GetClip();
         }
         _hitEffect.SetActive(true);
-        _hitEffect.GetComponent<FractureEffect>().BreakObject();
         this.gameObject.SetActive(false);
         Invoke(nameof(ChangeRandomPosition), _delayTime);
         AudioSource.PlayClipAtPoint(_audioClip, this.transform.position);
@@ -32,8 +33,7 @@ public class DestroyTarget : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         _hitEffect.SetActive(false);
-        _hitEffect.GetComponent<FractureEffect>().Reset();
-        Vector3 newPosition = _spawner.GetComponent<Spawner>().RandomPosition();
+        Vector3 newPosition = Spawner.Instance.RandomPosition();
         this.transform.parent.position = newPosition;
     }
 }
