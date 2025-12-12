@@ -238,6 +238,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1612807831}
     m_Modifications:
+    - target: {fileID: 4744027058218970809, guid: 475ef58f1b36f6843ac685de5937956e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7126545124757035722, guid: 475ef58f1b36f6843ac685de5937956e, type: 3}
       propertyPath: m_Name
       value: StartTarget
@@ -1161,6 +1165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   _bulletKeyBase: Bullets/Bullet_Pistol_A
   _initialPoolSize: 10
+  _cleanupInterval: 0.5
+  _maxDistance: 50
 --- !u!1 &1216105269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,6 +1689,7 @@ GameObject:
   - component: {fileID: 1538823502}
   - component: {fileID: 1538823504}
   - component: {fileID: 1538823503}
+  - component: {fileID: 1538823505}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -1732,7 +1739,7 @@ MonoBehaviour:
   _gunController: {fileID: 1806529934}
   _bulletManager: {fileID: 1206372042}
   _defaultGun: {fileID: 7173815278906741782, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-  _fireSpeed: 20
+  _fireSpeed: 50
   _firePointKeyBase: Guns/FirePoint
   _bulletSound: {fileID: 1538823500}
 --- !u!114 &1538823499
@@ -1750,7 +1757,7 @@ MonoBehaviour:
   _gunController: {fileID: 1883033728}
   _bulletManager: {fileID: 1206372042}
   _defaultGun: {fileID: 7173815278906741782, guid: e7461e3cb4dfd384ea54841be167ca84, type: 3}
-  _fireSpeed: 20
+  _fireSpeed: 50
   _firePointKeyBase: Guns/FirePoint
   _bulletSound: {fileID: 1538823500}
 --- !u!114 &1538823500
@@ -1817,8 +1824,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eef481562806b644f9b6000edac2f99f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _scoreText: {fileID: 1478082184}
   _highScoreText: {fileID: 530066498}
+  _maxTargets: 3
+  PlayerGuns: []
+--- !u!114 &1538823505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538823495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0478af6fa19f2be45bf1ae6e3dcd08ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _scoreText: {fileID: 1478082184}
+  _refreshInterval: 0.15
 --- !u!4 &1600057982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8887640246851748823, guid: f664cd5bbecdca14287faea743153003, type: 3}
@@ -2611,7 +2633,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

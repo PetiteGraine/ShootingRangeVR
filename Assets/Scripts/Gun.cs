@@ -12,13 +12,17 @@ public class Gun : MonoBehaviour
     [SerializeField] private GameObject _defaultGun;
 
     [Header("Settings")]
-    [SerializeField] private float _fireSpeed = 20f;
-
+    [SerializeField] private float _fireSpeed = 50f;
     [SerializeField] private string _firePointKeyBase = "Guns/FirePoint";
+    [SerializeField] private BulletSound _bulletSound;
 
     private Transform _firePoint;
     private ParticleSystem _muzzleFlash;
-    [SerializeField] private BulletSound _bulletSound;
+
+    private void Awake()
+    {
+        GameplayManager.Instance.PlayerGuns.Add(this);
+    }
 
     private IEnumerator Start()
     {
@@ -103,6 +107,7 @@ public class Gun : MonoBehaviour
 
         spawnedBullet.transform.position = _firePoint.position;
         spawnedBullet.transform.rotation = _firePoint.rotation;
+        spawnedBullet.SetActive(true);
 
         if (rb != null)
         {

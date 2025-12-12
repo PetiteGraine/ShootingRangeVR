@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class StartTarget : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Countimer _countimer;
     [SerializeField] private Spawner _spawner;
+
     private AudioClip _audioClip;
     private TargetSoundManager _targetSoundManager;
 

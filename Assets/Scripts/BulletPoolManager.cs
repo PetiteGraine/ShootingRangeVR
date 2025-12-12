@@ -6,10 +6,13 @@ using System.Collections.Generic;
 
 public class BulletPoolManager : MonoBehaviour
 {
-    [Header("Settings")]
+    [Header("Bullet Pool Settings")]
     [SerializeField] private string _bulletKeyBase = "Bullets/Bullet_Pistol_A";
     [SerializeField] private int _initialPoolSize = 10;
+    [SerializeField] private float _cleanupInterval = 0.5f;
+    [SerializeField] private float _maxDistance = 50f;
 
+    private Vector3 _cleanupOrigin;
     private List<GameObject> _pool = new List<GameObject>();
     private GameObject _loadedPrefab;
     public bool IsReady { get; private set; } = false;
@@ -32,6 +35,8 @@ public class BulletPoolManager : MonoBehaviour
             _loadedPrefab = handle.Result;
             InitializePool();
             IsReady = true;
+            _cleanupOrigin = transform.position;
+            StartCoroutine(CleanupLoop());
         }
         else
         {
@@ -63,11 +68,30 @@ public class BulletPoolManager : MonoBehaviour
         {
             if (!bullet.activeInHierarchy)
             {
-                bullet.SetActive(true);
                 return bullet;
             }
         }
 
         return CreateNewBullet();
+    }
+
+    private IEnumerator CleanupLoop()
+    {
+        while (true)
+        {
+            for (int i = _pool.Count - 1; i >= 0; i--)
+            {
+                GameObject bullet = _pool[i];
+
+                if (bullet.activeInHierarchy)
+                {
+                    if (Vector3.Distance(bullet.transform.position, _cleanupOrigin) > _maxDistance)
+                    {
+                        bullet.SetActive(false);
+                    }
+                }
+            }
+            yield return new WaitForSeconds(_cleanupInterval);
+        }
     }
 }

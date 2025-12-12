@@ -5,14 +5,15 @@ using UnityEngine;
 
 public class Countimer : MonoBehaviour
 {
-    [Header("Countimer")]
+    [Header("References")]
     [SerializeField] private TextMeshProUGUI _countimerText;
     [SerializeField] private GameObject _startTarget;
     [SerializeField] private GameObject _spawner;
+
     private bool _isTimerOn = false;
     private TimeSpan _timePlaying;
     private float _remainingTime;
-    private float _startTime = 5f;
+    private float _startTime = 60f;
 
     private void Start()
     {

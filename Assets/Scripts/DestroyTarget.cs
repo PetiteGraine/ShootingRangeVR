@@ -2,9 +2,11 @@ using UnityEngine;
 
 public class DestroyTarget : MonoBehaviour
 {
+    [Header("Destroy Target Settings")]
     [SerializeField] private float _delayTime = 0.20f;
     [SerializeField] private GameObject _spawner;
     [SerializeField] private GameObject _hitEffect;
+
     private AudioClip _audioClip;
     private TargetSoundManager _targetSoundManager;
 
@@ -31,7 +33,7 @@ public class DestroyTarget : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         _hitEffect.SetActive(false);
-        Vector3 newPosition = _spawner.GetComponent<Spawner>().RandomPosition();
+        Vector3 newPosition = Spawner.Instance.RandomPosition();
         this.transform.parent.position = newPosition;
     }
 }

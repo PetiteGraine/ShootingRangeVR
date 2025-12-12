@@ -1,13 +1,21 @@
 using TMPro;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 public class GameplayManager : MonoBehaviour
 {
-    private static GameplayManager _instance;
+    [Header("Gameplay Settings")]
+    [SerializeField] private TextMeshProUGUI _highScoreText;
+    [SerializeField] private int _maxTargets = 3;
+    public int MaxTargets => _maxTargets;
+    public int CurrentTargets { get; private set; } = 0;
+    public List<Gun> PlayerGuns = new List<Gun>();
+
     private int _currentScore;
     private int _highScore = 0;
-    [SerializeField] private TextMeshProUGUI _scoreText;
-    [SerializeField] private TextMeshProUGUI _highScoreText;
+    public event Action<int> OnScoreChanged;
+    private static GameplayManager _instance;
 
     public static GameplayManager Instance
     {
@@ -31,7 +39,7 @@ public class GameplayManager : MonoBehaviour
     public void AddScore(int points)
     {
         _currentScore += points;
-        _scoreText.text = "Score: " + _currentScore.ToString("D6");
+        OnScoreChanged?.Invoke(_currentScore);
         UpdateHighScore();
     }
 
@@ -44,7 +52,7 @@ public class GameplayManager : MonoBehaviour
     {
         if (_currentScore == 0) return;
         _currentScore = 0;
-        _scoreText.text = "Score: " + _currentScore.ToString("D6");
+        OnScoreChanged?.Invoke(_currentScore);
     }
 
     public void UpdateHighScore()
@@ -52,7 +60,21 @@ public class GameplayManager : MonoBehaviour
         if (_currentScore > _highScore)
         {
             _highScore = _currentScore;
-            _highScoreText.text = "High Score: " + _highScore.ToString("D6");
+            if (_highScoreText != null)
+            {
+                _highScoreText.text = "High Score: " + _highScore.ToString("D6");
+            }
         }
+    }
+
+    public void RegisterTargetSpawn()
+    {
+        CurrentTargets++;
+    }
+
+    public void RegisterTargetDespawn()
+    {
+        CurrentTargets--;
+        if (CurrentTargets < 0) CurrentTargets = 0;
     }
 }

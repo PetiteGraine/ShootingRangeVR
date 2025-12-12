@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 838408699890507884}
   m_Layer: 0
   m_Name: Bullet_Pistol_A_PCVR
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -274,6 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d73c727041f7177498b21df141bd5c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _lifeTime: 5
 --- !u!1 &8849644791493623283
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +289,7 @@ GameObject:
   - component: {fileID: 3542094112417767206}
   m_Layer: 0
   m_Name: Bullet_Pistol_A_Part
-  m_TagString: Bullet
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
