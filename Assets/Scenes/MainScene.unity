@@ -1380,6 +1380,14 @@ PrefabInstance:
       propertyPath: _countimer
       value: 
       objectReference: {fileID: 1538823503}
+    - target: {fileID: 7702011694348403362, guid: 475ef58f1b36f6843ac685de5937956e, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7702011694348403362, guid: 475ef58f1b36f6843ac685de5937956e, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 7329662ce463fcd4c93fcd812ca56ed6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22269,7 +22277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1685919236}
   m_Layer: 0
-  m_Name: Environement
+  m_Name: Shooting Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
