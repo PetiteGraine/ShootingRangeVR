@@ -67,6 +67,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 348b000560c953c468237a0648544a3f, type: 2}
+  - {fileID: 2100000, guid: 7329662ce463fcd4c93fcd812ca56ed6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -375,7 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _countimer: {fileID: 0}
-  _spawner: {fileID: 5073935687322183251, guid: f664cd5bbecdca14287faea743153003, type: 3}
+  _spawner: {fileID: 0}
 --- !u!135 &2521866199130635130
 SphereCollider:
   m_ObjectHideFlags: 0

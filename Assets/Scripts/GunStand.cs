@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GunStand : MonoBehaviour
 {
+
+    [SerializeField] private GameObject gunStandSpawnPoint;
     private IEnumerator Start()
     {
         string suffix =
@@ -17,7 +19,12 @@ public class GunStand : MonoBehaviour
         yield return handle;
         if (handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
         {
-            Instantiate(handle.Result);
+            if (gunStandSpawnPoint == null)
+            {
+                Instantiate(handle.Result);
+                yield break;
+            }
+            Instantiate(handle.Result, gunStandSpawnPoint.transform.position, gunStandSpawnPoint.transform.rotation);
         }
         else
         {
